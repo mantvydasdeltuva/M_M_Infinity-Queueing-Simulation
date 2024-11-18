@@ -32,7 +32,7 @@ Each event updates the system state, including the current number of active call
 
 At any point, the simulation determines which event (arrival or departure) occurs next:
   - **Arrival Time:** Calculated as the current time plus a random inter-arrival time (`exprnd(1 / lambda)`). This is updated every time an arrival event occurs.
-  - **Departure Time:** The earliest scheduled departure time from the `scheduled_departure_times` list.
+  - **Departure Time:** The earliest scheduled departure time from the scheduled departures (`scheduled_departure_times`) list.
 
 The simulation compares the next arrival time (`next_arrival_time`) and the earliest departure time (`min(scheduled_departure_times)`) to decide:
 - If the arrival time is sooner, an **arrival event** occurs:
@@ -58,9 +58,9 @@ total_time = 100  % units
 ```
 ---
 
-### Process Flow
+### Simulation Flow
 
-1. Start the simulation clock at `current_time = 0`.
+1. Start the simulation clock at zero (`current_time = 0`).
 2. Generate the first arrival event and initialize the system state:
    - Sample the time until the first arrival from the exponential distribution.
    - Log the initial system state (time and number of calls).
@@ -75,7 +75,7 @@ total_time = 100  % units
        - Decrease the number of active calls.
        - Remove the completed departure from the schedule.
    - Log the system state after each event (time and number of calls).
-4. Continue until `current_time >= total_time`.
+4. Continue until simulation time is exceeded (`current_time >= total_time`).
 
 ---
 
@@ -86,7 +86,8 @@ total_time = 100  % units
 This plot tracks the evolution of the number of active calls during the simulation. The orange line represents the number of active calls at each logged event. The red dashed line shows the time-weighted average number of calls, computed across the simulation duration.
 
 <div align="center">
-  <img src="assets/graph1.png" alt="Number of Calls" style="width: 500px; height: auto; border-radius: 4px;">
+  <img src="assets/graph1-dark.png#gh-dark-mode-only" alt="Number of Calls" style="width: 500px; height: auto; border-radius: 4px;">
+  <img src="assets/graph1-light.png#gh-light-mode-only" alt="Number of Calls" style="width: 500px; height: auto; border-radius: 4px;">
 </div>
 
 #### Probability Distribution of Calls in the System
@@ -94,7 +95,8 @@ This plot tracks the evolution of the number of active calls during the simulati
 This histogram displays the probability distribution of the number of active calls during the simulation. The distribution reflects the system's ability to handle all arriving calls due to infinite servers.
 
 <div align="center">
-  <img src="assets/graph2.png" alt="Calls Distribution" style="width: 500px; height: auto; border-radius: 4px;">
+  <img src="assets/graph2-dark.png#gh-dark-mode-only" alt="Calls Distribution" style="width: 500px; height: auto; border-radius: 4px;">
+  <img src="assets/graph2-light.png#gh-light-mode-only" alt="Calls Distribution" style="width: 500px; height: auto; border-radius: 4px;">
 </div>
 
 #### Distributions of Inter-Arrival and Service Times
@@ -106,7 +108,8 @@ This plot provides two separate distributions:
 Both distributions align with the expected exponential behavior, given the model assumptions.
 
 <div align="center">
-  <img src="assets/graph3.png" alt="Times Distribution" style="width: 500px; height: auto; border-radius: 4px;">
+  <img src="assets/graph3-dark.png#gh-dark-mode-only" alt="Times Distribution" style="width: 500px; height: auto; border-radius: 4px;">
+  <img src="assets/graph3-light.png#gh-light-mode-only" alt="Times Distribution" style="width: 500px; height: auto; border-radius: 4px;">
 </div>
 
 ---
@@ -118,7 +121,7 @@ Both distributions align with the expected exponential behavior, given the model
    git clone https://github.com/mantvydasdeltuva/M_M_Infinity-Queue-Simulation.git
    cd M_M_Infinity-Queue-Simulation
 2. Open the MATLAB script in the MATLAB editor.
-3. Modify the parameters (lambda, mu, total_time) if needed.
+3. Modify the parameters (`lambda`, `mu`, `total_time`) if needed.
 4. Run the script to simulate and generate the visualizations.
 
 ---
